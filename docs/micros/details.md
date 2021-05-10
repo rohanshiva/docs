@@ -5,17 +5,18 @@ sidebar_label: Technical Details
 ---
 
 ### Pre-set Environment Variables
+#### Learn more about environment variables pre-set in every micro
 
-The `DETA_PATH` and `DETA_RUNTIME` environent variables are set in every Micro's environment. 
  * `DETA_PATH` contains an identifying string for your Micro.
-    * If your `DETA_PATH` contaied a value of `sdgfh` then your Micro is accessible at https://sdgfh.deta.dev.
- * `DETA_RUNTIME` is a boolean that tells a script if it's running on a Micro or not.
+   * If your `DETA_PATH` contaied a value of `sdgfh` then your Micro is accessible at https://sdgfh.deta.dev.
+
+ * `DETA_RUNTIME` is a boolean value that indicates if your script is running on a Micro.
     * When accessing this variable in a Micro, expect to get a `True` from it. 
 
-#### Why would I want these?
+#### Use cases
 Let's run through a few examples. 
 
-##### DETA_PATH
+##### `DETA_PATH`
 Let's say you're building a resource that needs to respond with an absolute link to some of the content it is hosting, along with the relative resource link. This can be done with the following code:
 
 ```py
@@ -36,7 +37,7 @@ async def get_resource_location(resource_id):
        }
 ```
 
-##### DETA_RUNTIME
+##### `DETA_RUNTIME`
 Let's say you're running a `fastapi` project on your Micro and that you've got an endpoint that dumps very sensitive debug informaton like so:
 
 ```py
