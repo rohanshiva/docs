@@ -5,19 +5,17 @@ sidebar_label: Technical Details
 ---
 
 ### Pre-set Environment Variables
-#### Learn more about environment variables pre-set in every micro
+#### Learn more about environment variables pre-set in every Micro
 
  * `DETA_PATH`: contains an identifying string for your Micro.
-   * If your `DETA_PATH` contaied a value of `sdgfh` then your Micro is accessible at https://sdgfh.deta.dev.
+   * If your `DETA_PATH` contained a value of `sdgfh` then your Micro is accessible at https://sdgfh.deta.dev.
 
  * `DETA_RUNTIME`: boolean value that indicates if your script is running on a Micro.
     * When accessing this variable in a Micro, expect to get a `True` from it. 
 
 #### Use cases
-Let's run through a few examples. 
-
-##### `DETA_PATH`
-Let's say you're building a resource that needs to respond with an absolute link to some of the content it is hosting, along with the relative resource link. This can be done with the following code:
+##### Absolute link
+In some cases, your resource may need to respond with an absolute link to some of the content it is hosting, alond with the relative resource link. This can be done with the following code:
 
 ```py
 import os
@@ -38,8 +36,8 @@ async def get_resource_location(resource_id):
        }
 ```
 
-##### `DETA_RUNTIME`
-Let's say you're running a `fastapi` project on your Micro and that you've got an endpoint that dumps very sensitive debug informaton like so:
+##### Check if a script is running on Micro
+In some cases, you might need to run some code exclusively in local development or in Micro. For example, if you're running a `fastapi` project on your Micro, and you've got an endpoint that dumps very sensitive debug information like so:
 
 ```py
 @app.get("/debug_info")
@@ -49,9 +47,10 @@ async def debug_info():
 
 This would be alright for local testing, but would mean that anyone would be able to access this sensitive information.
 
-A solution to this could be to check the environment variable (using `os.getenv` from the `os` import) to see if this is running on Deta or not.
-
+A solution to this could be to check the environment variable to see if this is running on Deta or not. 
 ```py
+import os
+
 @app.get("/debug_info")
 async def debug_info():
    if (os.getenv('DETA_RUNTIME', False)):
