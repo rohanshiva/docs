@@ -15,7 +15,7 @@ sidebar_label: Technical Details
 
 #### Use cases
 ##### Absolute link
-In some cases, your resource may need to respond with an absolute link to some of the content it is hosting, alond with the relative resource link. This can be done with the following code:
+In some cases, your resource may need to respond with an absolute link to some of the content it is hosting, along with the relative resource link. This can be done with the following code:
 
 ```py
 import os
